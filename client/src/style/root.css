@@ -1,9 +1,11 @@
-:root {
-    --white: #FFFFFF;
-    --padawan-color: #DE851D;
-    --master-color: #16D71E;
-    --jedi-color: #0FC9BE;
-    --grey-color: #D9D9D9;
-    --light-grey-color: #EFEFEF;
-    --primary-color: #DE851D;
-}
+       :root {
+          --white: #FFFFFF;
+          --padawan-color: #DE851D;
+          --master-color: #16D71E;
+          --jedi-color: #0FC9BE;
+          --grey-color: #D9D9D9;
+          --light-grey-color: #EFEFEF;
+          --primary-color: #DE851D;
+          --turquoise-color: #13B3D6;
+          --danger-color: crimson
+      }

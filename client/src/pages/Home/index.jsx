@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Card from "../../components/Cards";
 import Carousel from "../../components/Carrousel";
 import {
@@ -9,6 +10,7 @@ import {
 import {
   ActionRow,
   AddButton,
+  GridItems,
   HomeWrapper,
   ListCardRecipeContainer,
 } from "./Home.styled";
@@ -33,7 +35,12 @@ const Home = () => {
       </ActionRow>
 
       <ListCardRecipeContainer className="section-separator">
-        <Card /> <Card />
+        <GridItems>
+          <Card />
+        </GridItems>
+        <GridItems>
+          <Card />
+        </GridItems>
       </ListCardRecipeContainer>
     </HomeWrapper>
   );
