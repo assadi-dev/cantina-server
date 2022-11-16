@@ -11,7 +11,7 @@ export const HomeWrapper = styled.div`
   }
 `;
 
-export const ActionRow = styled.div`
+export const ActionRow = styled.section`
   padding: 12px 0px;
   display: flex;
   align-items: center;
@@ -51,4 +51,12 @@ export const AddButton = styled(Link)`
   :hover {
     opacity: 0.6;
   }
+`;
+
+export const ListCardRecipeContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 22rem);
+  grid-gap: 16px;
+  width: 100%;
+  min-height: 60vh;
 `;

@@ -1,7 +1,18 @@
 import React from "react";
+import Card from "../../components/Cards";
 import Carousel from "../../components/Carrousel";
-import { AddIcon } from "../../components/Icons/Icons";
-import { ActionRow, AddButton, HomeWrapper } from "./Home.styled";
+import {
+  AddIcon,
+  FilterSettingIcon,
+  SearchIcon,
+} from "../../components/Icons/Icons";
+import {
+  ActionRow,
+  AddButton,
+  HomeWrapper,
+  ListCardRecipeContainer,
+} from "./Home.styled";
+import SearchBar from "./SearchBar";
 
 const Home = () => {
   return (
@@ -17,14 +28,13 @@ const Home = () => {
           </AddButton>
         </div>
         <div className="col end">
-          <AddButton>
-            <span>
-              <AddIcon />
-            </span>
-            Ajouter une nouvelle recette
-          </AddButton>
+          <SearchBar />
         </div>
       </ActionRow>
+
+      <ListCardRecipeContainer className="section-separator">
+        <Card /> <Card />
+      </ListCardRecipeContainer>
     </HomeWrapper>
   );
 };
