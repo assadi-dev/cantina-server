@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FloatingLabel from "../../components/Input/FloatingLabel";
 import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
 
-const IngredientInput = ({ ingredient, onChange }) => {
+const IngredientInput = ({ ingredient, onChange, onRemoveitem }) => {
   const { id, qte, unite, label } = ingredient;
   const [inputvalue, setInputValue] = useState({
     id,
@@ -15,6 +15,10 @@ const IngredientInput = ({ ingredient, onChange }) => {
     let name = e.target.name;
     let value = e.target.value;
     setInputValue((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleRemoveItem = () => {
+    onRemoveitem(id, "ingredient");
   };
   useEffect(() => {
     onChange(id, inputvalue);
@@ -49,6 +53,7 @@ const IngredientInput = ({ ingredient, onChange }) => {
             onChange={handleChange}
           />
         </div>
+        <button onClick={handleRemoveItem}>Retirer</button>
       </IngredientRowinput>
     </FormInputControl>
   );

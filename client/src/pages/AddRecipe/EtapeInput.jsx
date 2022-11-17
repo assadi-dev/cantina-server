@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import FloatingLabel from "../../components/Input/FloatingLabel";
 import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
 
-const EtapeInput = ({ etape, onChange }) => {
+const EtapeInput = ({ etape, onChange, onRemoveitem }) => {
   const { id, content } = etape;
   const [inputvalue, setInputValue] = useState({
     id,
@@ -14,6 +14,11 @@ const EtapeInput = ({ etape, onChange }) => {
     let value = e.target.value;
     setInputValue((prevState) => ({ ...prevState, [name]: value }));
   };
+
+  const handleRemoveItem = () => {
+    onRemoveitem(id, "etape");
+  };
+
   useEffect(() => {
     onChange(id, inputvalue);
   }, [inputvalue.content]);
@@ -28,6 +33,7 @@ const EtapeInput = ({ etape, onChange }) => {
           onChange={handleChange}
         />
       </div>
+      <button onClick={() => handleRemoveItem()}>retirer</button>
     </FormInputControl>
   );
 };

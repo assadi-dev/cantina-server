@@ -13,6 +13,7 @@ import {
 import IngredientInput from "./IngredientInput";
 import uniqid from "uniqid";
 import EtapeInput from "./EtapeInput";
+import { removeItem } from "../../utils/Array";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
@@ -26,6 +27,12 @@ const AddRecipe = () => {
   };
   const addEtapes = () => {
     setListEtape((prevState) => [...prevState, { id: uniqid(), content: "" }]);
+  };
+  const removeElement = (id, element) => {
+    if (element == "etape")
+      setListEtape(() => removeItem(listEtapes, "id", id));
+    if (element == "ingredient")
+      setListingredient(() => removeItem(listIngredient, "id", id));
   };
 
   const handleChangeEtape = (id, data) => {
@@ -77,6 +84,7 @@ const AddRecipe = () => {
               key={ingredient.id}
               ingredient={ingredient}
               onChange={handleChangeIngredient}
+              onRemoveitem={removeElement}
             />
           ))}
         <AddElementButton onClick={addIngredient}>
@@ -94,6 +102,7 @@ const AddRecipe = () => {
               key={etape.id}
               etape={etape}
               onChange={handleChangeEtape}
+              onRemoveitem={removeElement}
             />
           ))}
         <AddElementButton onClick={addEtapes}>
