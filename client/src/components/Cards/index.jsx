@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IMG_BLANK } from "../../constant/theme";
+import { pluriel } from "../../utils/textForm";
+import { minToHourString } from "../../utils/time";
 import { ClockIcon, PencilIcon, PersonesIcon, TrashIcon } from "../Icons/Icons";
 import {
   CardBody,
@@ -12,8 +15,7 @@ import {
 import Difficulty from "./Difficulty";
 
 const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
-  const imgTest =
-    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
+  let photo = preview ? preview : IMG_BLANK;
 
   const handleDelete = () => {
     alert("Voulez-vous supprimer ?");
@@ -24,11 +26,10 @@ const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
       <CardBody>
         <div>
           <Link to={`recette/${2}`}>
-            <CardPreview src={imgTest} alt="Preview" />
+            <CardPreview src={photo} alt="Preview" />
             <CardBodyRow>
-              <p className="title">Title</p>
+              <p className="title">{title}</p>
               <Link to={`recette/modifier/15`}>
-                {" "}
                 <IconCard className="edit" title="Modifier la recette">
                   <PencilIcon />
                 </IconCard>
@@ -39,14 +40,14 @@ const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
                 <IconCard>
                   <PersonesIcon />
                 </IconCard>
-                1 personne
+                {`${personnes} ${pluriel(personnes, "personne", "personnes")}`}
               </CardTextDetail>
               <CardTextDetail title="Temps de péparation">
-                {" "}
                 <IconCard>
                   <ClockIcon />
-                </IconCard>{" "}
-                1h32
+                </IconCard>
+                {tempsPreparation &&
+                  minToHourString(parseInt(tempsPreparation))}
               </CardTextDetail>
             </CardBodyRow>
           </Link>
@@ -58,7 +59,7 @@ const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
             >
               <TrashIcon />
             </IconCard>
-            <Difficulty niveau={"padawan"} />
+            <Difficulty niveau={niveau} />
           </CardBodyRow>
         </div>
       </CardBody>

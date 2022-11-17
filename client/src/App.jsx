@@ -8,8 +8,6 @@ import Home from "./pages/Home";
 import RecipesDetails from "./pages/RecipesDetails";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
       <Routes>

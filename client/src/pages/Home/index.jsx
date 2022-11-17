@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../../components/Cards";
 import Carousel from "../../components/Carrousel";
@@ -7,6 +8,7 @@ import {
   FilterSettingIcon,
   SearchIcon,
 } from "../../components/Icons/Icons";
+import { getAllRecipes } from "../../redux/actions/RecipeAction.action";
 import {
   ActionRow,
   AddButton,
@@ -17,6 +19,13 @@ import {
 import SearchBar from "./SearchBar";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const recepesCollection = useSelector((state) => state.RecipesReducer);
+
+  useEffect(() => {
+    dispatch(getAllRecipes());
+  }, []);
+
   return (
     <HomeWrapper>
       <Carousel />
@@ -35,18 +44,20 @@ const Home = () => {
       </ActionRow>
 
       <ListCardRecipeContainer className="section-separator">
-        <GridItems>
-          <Card />
-        </GridItems>
-        <GridItems>
-          <Card />
-        </GridItems>
-        <GridItems>
-          <Card />
-        </GridItems>
-        <GridItems>
-          <Card />
-        </GridItems>
+        {recepesCollection.isReady
+          ? recepesCollection.all.map((recipes) => (
+              <GridItems key={recipes.id}>
+                <Card
+                  id={recipes.id}
+                  title={recipes.titre}
+                  niveau={recipes.niveau}
+                  preview={recipes.photo}
+                  personnes={recipes.personnes}
+                  tempsPreparation={recipes.tempsPreparation}
+                />
+              </GridItems>
+            ))
+          : null}
       </ListCardRecipeContainer>
     </HomeWrapper>
   );
