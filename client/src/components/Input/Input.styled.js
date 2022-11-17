@@ -8,30 +8,34 @@ export const Label = styled.label`
   font-weight: 400;
   color: var(--grey-color);
   pointer-events: none;
-  transform: translateY(30px);
   transition: all 0.25s ease-in-out;
+  transform: ${({ isFocus, isValid }) =>
+    isFocus || isValid ? "translateY(0px)" : "translateY(30px)"};
 `;
 
 export const FloatingLabelContainer = styled.div`
   width: 100%;
   position: relative;
   padding: 20px 0;
-  input {
+  input,
+  textarea,
+  select {
     width: 100%;
     padding: 10px 0;
     display: block;
     background: transparent;
     outline: none;
     border: none;
-    border-bottom: solid 1px var(--grey-color);
+    border-bottom: ${({ isFocus }) =>
+      isFocus
+        ? "solid 1px var(--padawan-color)"
+        : "solid 1px var(--grey-color)"};
 
-    &:focus ~ ${Label}, &:valid ~ ${Label} {
-      color: var(--padawan-color);
-      transform: translateY(0) scale(0.8);
+    option {
+      font-size: 16px;
     }
-    &:focus,
-    &:valid {
-      border-bottom: solid 1px var(--padawan-color);
-    }
+  }
+  textarea {
+    resize: none;
   }
 `;

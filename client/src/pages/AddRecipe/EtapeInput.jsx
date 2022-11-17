@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FloatingLabel from "../../components/Input/FloatingLabel";
+import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
 import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
 
 const EtapeInput = ({ etape, onChange, onRemoveitem }) => {
@@ -26,14 +27,16 @@ const EtapeInput = ({ etape, onChange, onRemoveitem }) => {
   return (
     <FormInputControl>
       <div className="etapes">
-        <FloatingLabel
+        <TextareaFloatingLabel
           name="content"
           label="Etape"
           value={inputvalue.content}
           onChange={handleChange}
         />
       </div>
-      <button onClick={() => handleRemoveItem()}>retirer</button>
+      <button type="button" onClick={() => handleRemoveItem()}>
+        retirer
+      </button>
     </FormInputControl>
   );
 };

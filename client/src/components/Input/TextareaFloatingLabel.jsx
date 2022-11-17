@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FloatingLabelContainer, Label } from "./Input.styled";
 
-const FloatingLabel = ({ htmlFor, label, ...props }) => {
+const TextareaFloatingLabel = ({ label, ...props }) => {
   const [focus, setFocus] = useState(false);
   const [valid, setValid] = useState(false);
   const handleFocus = (e) => {
@@ -17,17 +17,17 @@ const FloatingLabel = ({ htmlFor, label, ...props }) => {
 
   return (
     <FloatingLabelContainer isFocus={focus}>
-      <input
+      <textarea
         {...props}
         onFocus={handleFocus}
         onBlur={handleFocus}
         ref={inputRef}
       />
-      <Label htmlFor={htmlFor} isFocus={focus} isValid={valid}>
+      <Label isFocus={focus} isValid={valid}>
         {label}
       </Label>
     </FloatingLabelContainer>
   );
 };
 
-export default FloatingLabel;
+export default TextareaFloatingLabel;

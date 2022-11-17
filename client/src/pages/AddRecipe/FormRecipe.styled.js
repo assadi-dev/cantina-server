@@ -67,10 +67,12 @@ export const IngredientRowinput = styled.div`
   }
 `;
 
-export const AddElementButton = styled.button`
+export const AddElementButton = styled.span`
   display: flex;
   align-items: center;
   color: var(--primary-color);
+  cursor: pointer;
+
   :active {
     opacity: 0.5;
   }
@@ -82,5 +84,28 @@ export const IconButton = styled.span`
   svg {
     width: 20px;
     height: 20px;
+  }
+`;
+
+export const FormBottom = styled.div`
+  width: 100%;
+  min-height: 50px;
+  margin: 1rem 0;
+  padding: 2.5rem 0rem;
+`;
+
+export const SubmitBtn = styled.button`
+  width: fit-content;
+  padding: 12px 22px;
+  color: var(--white);
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: var(--primary-color);
+  :disabled {
+    opacity: 0.5;
+  }
+  :active {
+    opacity: 0.5;
   }
 `;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FloatingLabelContainer, Label } from "./Input.styled";
 
-const FloatingLabel = ({ htmlFor, label, ...props }) => {
+const SelectFlotingLabel = ({ htmlFor, label, optionValues, ...props }) => {
   const [focus, setFocus] = useState(false);
   const [valid, setValid] = useState(false);
   const handleFocus = (e) => {
@@ -17,12 +17,19 @@ const FloatingLabel = ({ htmlFor, label, ...props }) => {
 
   return (
     <FloatingLabelContainer isFocus={focus}>
-      <input
+      <select
         {...props}
         onFocus={handleFocus}
         onBlur={handleFocus}
         ref={inputRef}
-      />
+      >
+        {optionValues &&
+          optionValues.map((option, i) => (
+            <option value={option.value} key={i}>
+              {option.label}
+            </option>
+          ))}
+      </select>
       <Label htmlFor={htmlFor} isFocus={focus} isValid={valid}>
         {label}
       </Label>
@@ -30,4 +37,4 @@ const FloatingLabel = ({ htmlFor, label, ...props }) => {
   );
 };
 
-export default FloatingLabel;
+export default SelectFlotingLabel;

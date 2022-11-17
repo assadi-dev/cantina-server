@@ -53,7 +53,9 @@ const IngredientInput = ({ ingredient, onChange, onRemoveitem }) => {
             onChange={handleChange}
           />
         </div>
-        <button onClick={handleRemoveItem}>Retirer</button>
+        <button type="button" onClick={handleRemoveItem}>
+          Retirer
+        </button>
       </IngredientRowinput>
     </FormInputControl>
   );

@@ -3,17 +3,22 @@ import { AddIcon } from "../../components/Icons/Icons";
 import FloatingLabel from "../../components/Input/FloatingLabel";
 import {
   AddElementButton,
+  FormBottom,
   FormInputControl,
   FormRecipeContainer,
   HeaderFormPreview,
   HeaderFormRecipes,
   IconButton,
   SectionForm,
+  SubmitBtn,
 } from "./FormRecipe.styled";
 import IngredientInput from "./IngredientInput";
 import uniqid from "uniqid";
 import EtapeInput from "./EtapeInput";
 import { removeItem } from "../../utils/Array";
+import { useFormik } from "formik";
+import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
+import SelectFlotingLabel from "../../components/Input/SelectFlotingLabel";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
@@ -53,65 +58,131 @@ const AddRecipe = () => {
       }
       return ingredient;
     });
-
     setListingredient(() => upDateIngredient);
   };
+
+  //Envoie des donnée complete
+
+  const formik = useFormik({
+    initialValues: {
+      titre: "",
+      description: "",
+      niveau: "padawan",
+      personnes: 1,
+      tempsPreparation: "",
+      ingredients: [],
+      etapes: [],
+      photo: "",
+    },
+    onSubmit: (values) => {
+      let etapes = listEtapes.map((items) => items.content);
+      let ingredients = listIngredient.map((ingredient) => [
+        ingredient.qte + ingredient.unite,
+        ingredient.label,
+      ]);
+      let sendData = { ...values, etapes, ingredients };
+      console.log(sendData);
+    },
+  });
 
   return (
     <FormRecipeContainer>
       <h2>Nouvelle recette</h2>
-      <HeaderFormRecipes>
-        <div className="col-left">
-          <FormInputControl>
-            <FloatingLabel label="Titre" />
-          </FormInputControl>
-          <FormInputControl>
-            <FloatingLabel label="Description" />
-          </FormInputControl>
-          <FormInputControl>
-            <FloatingLabel label="Difficulté" />
-          </FormInputControl>
-        </div>
-        <div className="col-right">
-          <HeaderFormPreview></HeaderFormPreview>
-        </div>
-      </HeaderFormRecipes>
-      <SectionForm>
-        <h3 className="titleFormSection">Ingredients</h3>
-        {listIngredient.length > 0 &&
-          listIngredient.map((ingredient) => (
-            <IngredientInput
-              key={ingredient.id}
-              ingredient={ingredient}
-              onChange={handleChangeIngredient}
-              onRemoveitem={removeElement}
-            />
-          ))}
-        <AddElementButton onClick={addIngredient}>
-          <IconButton>
-            <AddIcon />
-          </IconButton>
-          Ajouter un ingredient
-        </AddElementButton>
-      </SectionForm>
-      <SectionForm style={{ marginTop: 42 }}>
-        <h3 className="titleFormSection">Etapes</h3>
-        {listEtapes.length > 0 &&
-          listEtapes.map((etape) => (
-            <EtapeInput
-              key={etape.id}
-              etape={etape}
-              onChange={handleChangeEtape}
-              onRemoveitem={removeElement}
-            />
-          ))}
-        <AddElementButton onClick={addEtapes}>
-          <IconButton>
-            <AddIcon />
-          </IconButton>
-          Ajouter une etape
-        </AddElementButton>
-      </SectionForm>
+      <form onSubmit={formik.handleSubmit}>
+        <HeaderFormRecipes>
+          <div className="col-left">
+            <FormInputControl>
+              <FloatingLabel
+                label="Titre"
+                name="titre"
+                value={formik.values.titre}
+                onChange={formik.handleChange}
+              />
+            </FormInputControl>
+            <FormInputControl>
+              <TextareaFloatingLabel
+                name="description"
+                label="Description"
+                value={formik.values.description}
+                onChange={formik.handleChange}
+              />
+            </FormInputControl>
+            <FormInputControl>
+              <SelectFlotingLabel
+                name="niveau"
+                label="Difficulté"
+                value={formik.values.niveau}
+                onChange={formik.handleChange}
+                optionValues={[
+                  { value: "padawan", label: "Padawan" },
+                  { value: "jedi", label: "Jedi" },
+                  { value: "maitre", label: "Maître" },
+                ]}
+              />
+            </FormInputControl>
+            <FormInputControl>
+              <FloatingLabel
+                name="personnes"
+                label="NB Perspnnes"
+                type="number"
+                min="1"
+                value={formik.values.personnes}
+                onChange={formik.handleChange}
+              />
+            </FormInputControl>
+            <FormInputControl>
+              <FloatingLabel
+                name="tempsPreparation"
+                label="Temps préparation (min)"
+                value={formik.values.tempsPreparation}
+                onChange={formik.handleChange}
+              />
+            </FormInputControl>
+          </div>
+          <div className="col-right">
+            <HeaderFormPreview></HeaderFormPreview>
+          </div>
+        </HeaderFormRecipes>
+        <SectionForm>
+          <h3 className="titleFormSection">Ingredients</h3>
+          {listIngredient.length > 0 &&
+            listIngredient.map((ingredient) => (
+              <IngredientInput
+                key={ingredient.id}
+                ingredient={ingredient}
+                onChange={handleChangeIngredient}
+                onRemoveitem={removeElement}
+              />
+            ))}
+          <AddElementButton onClick={addIngredient}>
+            <IconButton>
+              <AddIcon />
+            </IconButton>
+            Ajouter un ingredient
+          </AddElementButton>
+        </SectionForm>
+        <SectionForm style={{ marginTop: 42 }}>
+          <h3 className="titleFormSection">Etapes</h3>
+          {listEtapes.length > 0 &&
+            listEtapes.map((etape) => (
+              <EtapeInput
+                key={etape.id}
+                etape={etape}
+                onChange={handleChangeEtape}
+                onRemoveitem={removeElement}
+              />
+            ))}
+          <AddElementButton onClick={addEtapes}>
+            <IconButton>
+              <AddIcon />
+            </IconButton>
+            Ajouter une etape
+          </AddElementButton>
+        </SectionForm>
+        <FormBottom>
+          <SubmitBtn type="submit">Ajouter</SubmitBtn>
+        </FormBottom>
+      </form>
     </FormRecipeContainer>
   );
 };
