@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from "react";
+import FloatingLabel from "../../components/Input/FloatingLabel";
+import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
+
+const EtapeInput = ({ etape, onChange }) => {
+  const { id, content } = etape;
+  const [inputvalue, setInputValue] = useState({
+    id,
+    content,
+  });
+
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setInputValue((prevState) => ({ ...prevState, [name]: value }));
+  };
+  useEffect(() => {
+    onChange(id, inputvalue);
+  }, [inputvalue.content]);
+
+  return (
+    <FormInputControl>
+      <div className="etapes">
+        <FloatingLabel
+          name="content"
+          label="Etape"
+          value={inputvalue.content}
+          onChange={handleChange}
+        />
+      </div>
+    </FormInputControl>
+  );
+};
+
+export default EtapeInput;

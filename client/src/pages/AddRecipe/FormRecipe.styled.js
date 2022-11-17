@@ -43,9 +43,12 @@ export const HeaderFormPreview = styled.div`
   border-radius: 8px;
 `;
 
-export const IngredientForm = styled.div`
+export const SectionForm = styled.div`
   margin-top: 1.4rem;
   margin-bottom: 1.4rem;
+  .titleFormSection {
+    margin-bottom: 1.4rem;
+  }
 `;
 
 export const IngredientRowinput = styled.div`
@@ -61,5 +64,23 @@ export const IngredientRowinput = styled.div`
   .ingredients {
     min-width: 250px;
     max-width: 350px;
+  }
+`;
+
+export const AddElementButton = styled.button`
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  :active {
+    opacity: 0.5;
+  }
+`;
+export const IconButton = styled.span`
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  svg {
+    width: 20px;
+    height: 20px;
   }
 `;
