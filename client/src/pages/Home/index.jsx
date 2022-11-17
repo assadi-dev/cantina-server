@@ -22,7 +22,7 @@ const Home = () => {
       <Carousel />
       <ActionRow className="section-separator">
         <div className="col start">
-          <AddButton>
+          <AddButton to="recette/ajouter">
             <span>
               <AddIcon />
             </span>
@@ -35,6 +35,12 @@ const Home = () => {
       </ActionRow>
 
       <ListCardRecipeContainer className="section-separator">
+        <GridItems>
+          <Card />
+        </GridItems>
+        <GridItems>
+          <Card />
+        </GridItems>
         <GridItems>
           <Card />
         </GridItems>

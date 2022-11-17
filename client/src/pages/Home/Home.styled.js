@@ -55,12 +55,16 @@ export const AddButton = styled(Link)`
 
 export const ListCardRecipeContainer = styled.section`
   display: grid;
-  grid-template-columns: repeat(2, 18rem);
+  grid-template-columns: repeat(auto-fill, 1fr);
   grid-gap: 28px;
   width: 100%;
   padding: 2.2rem 0 0;
+  @media (min-width: 568px) {
+    grid-template-columns: repeat(auto-fill, 22rem);
+    justify-content: center;
+  }
   @media (min-width: 1200px) {
-    grid-template-columns: repeat(auto-fill, 24rem);
+    justify-content: space-between;
   }
 `;
 
@@ -69,5 +73,7 @@ export const GridItems = styled.div`
   align-self: center;
   padding-top: 20px;
   max-height: 280px;
+  margin-bottom: 2.8rem;
   position: relative;
+  flex: 1;
 `;

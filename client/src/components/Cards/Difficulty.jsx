@@ -6,7 +6,7 @@ const Difficulty = ({ niveau }) => {
   switch (niveau) {
     case "padawan":
       return (
-        <CardTextDetail className="padawan" title="niveau de difficulté">
+        <CardTextDetail className="padawan" title="Niveau de difficulté">
           Padawan
         </CardTextDetail>
       );
@@ -16,9 +16,9 @@ const Difficulty = ({ niveau }) => {
           Jedi
         </CardTextDetail>
       );
-    case "padawan":
+    case "maitre":
       return (
-        <CardTextDetail className="master" title="niveau de difficulté">
+        <CardTextDetail className="master" title="Niveau de difficulté">
           Maître
         </CardTextDetail>
       );
