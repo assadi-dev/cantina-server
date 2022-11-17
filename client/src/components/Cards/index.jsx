@@ -25,11 +25,11 @@ const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
     <CardContainer>
       <CardBody>
         <div>
-          <Link to={`recette/${2}`}>
+          <Link to={`recette/${id}`}>
             <CardPreview src={photo} alt="Preview" />
             <CardBodyRow>
               <p className="title">{title}</p>
-              <Link to={`recette/modifier/15`}>
+              <Link to={`recette/modifier/${id}`}>
                 <IconCard className="edit" title="Modifier la recette">
                   <PencilIcon />
                 </IconCard>
