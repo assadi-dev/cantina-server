@@ -14,7 +14,7 @@ import {
   SelectInputFilter,
 } from "./SearchBar.styled";
 
-const FilterDropdown = () => {
+const FilterDropdown = ({ isOpen, onClose }) => {
   const [filterParams, setFilterParams] = useState({
     niveau: "padawan",
     tempsPreparation: { start: "1", end: "15" },
@@ -37,12 +37,13 @@ const FilterDropdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(filterParams);
-    dispatch(filtered_recipes(filterParams));
+    dispatch(filtered_recipes(filterParams)).then(() => {
+      onClose();
+    });
   };
 
   return (
-    <FilterDropdowContainer>
+    <FilterDropdowContainer isOpen={isOpen}>
       <FilterHeader>Filtrer par :</FilterHeader>
       <form onSubmit={handleSubmit}>
         <FilterContent>

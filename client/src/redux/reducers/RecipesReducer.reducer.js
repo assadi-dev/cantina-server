@@ -7,6 +7,7 @@ import {
   LOAD_DATA,
   RETRIEVE_ALL_RECIPES,
   FILTER_RECIPE,
+  SEARCH_RECIPE,
 } from "../types/Recipes.type";
 
 const initialState = {
@@ -42,6 +43,16 @@ const RecipesReducer = (state = initialState, action) => {
 
     case FILTER_RECIPE:
       return { ...state, all: payload, isReady: true };
+    case SEARCH_RECIPE:
+      let searchResult = [];
+
+      searchResult = payload.term
+        ? state.all.filter((recipe) =>
+            recipe.titre.toLowerCase().includes(payload.term.toLowerCase())
+          )
+        : state.all;
+
+      return { ...state, all: searchResult, isReady: true };
 
     default:
       return state;

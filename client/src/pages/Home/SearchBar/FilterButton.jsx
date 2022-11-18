@@ -2,9 +2,9 @@ import React from "react";
 import { FilterSettingIcon } from "../../../components/Icons/Icons";
 import { FilterbuttonContainer } from "./SearchBar.styled";
 
-const FilterButton = () => {
+const FilterButton = ({ ...props }) => {
   return (
-    <FilterbuttonContainer>
+    <FilterbuttonContainer {...props}>
       <span>
         <FilterSettingIcon />
       </span>

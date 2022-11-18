@@ -52,7 +52,7 @@ export const InputSearchContainer = styled.div`
   }
 `;
 
-export const SearchButton = styled.span`
+export const SearchButton = styled.button`
   width: 20px;
   height: 20px;
   color: #323232;
@@ -83,10 +83,14 @@ export const FilterDropdowContainer = styled.div`
   right: 0;
   bottom: -10%;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
-  transform: translateY(100%);
+  transform: ${({ isOpen }) =>
+    isOpen ? "translateY(100%)" : "translateY(95%)"};
   z-index: 25;
   border-radius: 8px;
   font-size: 14px;
+  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
+  visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
+  transition: all 0.35s;
 `;
 
 export const FilterHeader = styled.div`

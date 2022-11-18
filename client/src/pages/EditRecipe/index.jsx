@@ -139,7 +139,7 @@ const EditRecipe = () => {
       dispatch(updateRecipes(id, sendData)).then((res) => {
         let successMessage = `${res.titre} à bien été mise à jour`;
         alert(successMessage);
-        dispatch(LoadData()).then(() => navigate("/", { replace: true }));
+        navigate("/", { replace: true });
       });
     },
   });

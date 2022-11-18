@@ -96,6 +96,7 @@ const AddRecipe = () => {
 
       dispatch(addRecipes(sendData)).then((res) => {
         alert("Recette ajouté");
+        // dispatch(LoadData()).then(() => navigate("/", { replace: true }));
         dispatch(LoadData()).then(() => navigate("/", { replace: true }));
       });
     },

@@ -5,3 +5,4 @@ export const ADD_RECIPE = "ADD_RECIPE";
 export const UPDATE_RECIPE = "UPDATE_RECIPE";
 export const DELETE_RECIPE = "DELETE_RECIPE";
 export const FILTER_RECIPE = "FILTER_RECIPE";
+export const SEARCH_RECIPE = "SEARCH_RECIPE";

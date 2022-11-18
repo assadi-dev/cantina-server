@@ -6,6 +6,7 @@ import {
   FIND_ONE_RECIPES,
   LOAD_DATA,
   RETRIEVE_ALL_RECIPES,
+  SEARCH_RECIPE,
   UPDATE_RECIPE,
 } from "../types/Recipes.type";
 
@@ -65,7 +66,7 @@ export const addRecipes = (data) => {
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       try {
-        dispatch({ type: LOAD_DATA, payload: [] });
+        dispatch({ type: LOAD_DATA });
         Api.post("/recipes", data)
           .then((res) => {
             dispatch({ type: ADD_RECIPE, payload: res.data });
@@ -155,7 +156,7 @@ export const filtered_recipes = ({ niveau, personnes, tempsPreparation }) => {
 
             dispatch({ type: FILTER_RECIPE, payload: filteredRecipes });
 
-            // resolve(data);
+            resolve(filteredRecipes);
           })
           .catch((err) => {
             throw err;
@@ -164,5 +165,13 @@ export const filtered_recipes = ({ niveau, personnes, tempsPreparation }) => {
         reject(error);
       }
     });
+  };
+};
+
+export const searchRecipes = (term) => {
+  return async (dispatch) => {
+    term.length > 0
+      ? dispatch({ type: SEARCH_RECIPE, payload: { term } })
+      : dispatch(getAllRecipes());
   };
 };
