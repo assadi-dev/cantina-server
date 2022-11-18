@@ -13,7 +13,7 @@ import {
 export const LoadData = () => {
   return async (dispatch) => {
     new Promise((resolve) => {
-      dispatch({ type: RETRIEVE_ALL_RECIPES, payload: [] });
+      dispatch({ type: LOAD_DATA });
       resolve("Chargemen en cours");
     });
   };
@@ -23,7 +23,7 @@ export const getAllRecipes = () => {
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       try {
-        dispatch({ type: LOAD_DATA, payload: [] });
+        dispatch({ type: LOAD_DATA });
         Api.get("/recipes")
           .then((res) => {
             let data = res.data;
@@ -87,7 +87,6 @@ export const updateRecipes = (id, data) => {
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       try {
-        dispatch({ type: LOAD_DATA, payload: [] });
         Api.put("/recipe/" + id, data)
           .then((res) => {
             dispatch({ type: UPDATE_RECIPE, payload: res.data });
