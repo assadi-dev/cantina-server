@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SearchIcon } from "../../../components/Icons/Icons";
 import FilterButton from "./FilterButton";
+import FilterDropdown from "./FilterDropdown";
 import {
   InputSearchContainer,
   SearchBarContainer,
@@ -28,6 +29,7 @@ const SearchBar = () => {
       </InputSearchContainer>
 
       <FilterButton />
+      <FilterDropdown />
     </SearchBarContainer>
   );
 };

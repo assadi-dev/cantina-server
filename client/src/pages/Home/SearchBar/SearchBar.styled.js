@@ -7,6 +7,7 @@ export const SearchBarContainer = styled.div`
   align-items: center;
   flex-wrap: nowrap;
   justify-content: flex-end;
+  position: relative;
 `;
 
 export const FilterbuttonContainer = styled.div`
@@ -68,4 +69,19 @@ export const SearchButton = styled.span`
   :active {
     opacity: 0.5;
   }
+`;
+
+//Filter Dropdown
+
+export const FilterDropdowContainer = styled.div`
+  width: 100%;
+  padding: 18px 15px;
+  background-color: var(--white);
+  position: absolute;
+  right: 0;
+  bottom: -10%;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(100%);
+  z-index: 25;
+  border-radius: 8px;
 `;
