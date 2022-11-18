@@ -31,7 +31,7 @@ const RecipesReducer = (state = initialState, action) => {
     case FIND_ONE_RECIPES:
       return { ...state, selected: payload, isReady: true };
     case ADD_RECIPE:
-      return { ...state, all: [payload, ...state.all], isReady: true };
+      return { ...state, all: [...state.all, payload], isReady: true };
     case DELETE_RECIPE:
       let removedRecipe = state.all.filter((recipe) => recipe.id != payload.id);
       return { ...state, all: removedRecipe, isReady: true };
