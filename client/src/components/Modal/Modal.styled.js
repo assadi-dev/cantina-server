@@ -16,16 +16,34 @@ export const ModalBackdrop = styled.div`
 
 export const ModalConfirmContainer = styled.div`
   border-radius: 5px;
-  box-shadow: 0 0 5px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
   background-color: var(--white);
-  padding: 10px 22px;
+  padding: 10px;
   min-width: 250px;
 `;
 
 export const ModalConfirmHeader = styled.div`
-  margin-bottom: 1.3rem;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+`;
+
+export const ModalConfirmContent = styled.div`
+  padding: 10px 22px;
+`;
+
+export const CloseModalBtn = styled.span`
+  width: 25px;
+  height: 25px;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  :hover {
+    opacity: 0.5;
+  }
+  :active {
+    opacity: 0.3;
+  }
 `;

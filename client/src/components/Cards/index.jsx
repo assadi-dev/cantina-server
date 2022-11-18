@@ -14,11 +14,19 @@ import {
 } from "./Card.styled";
 import Difficulty from "./Difficulty";
 
-const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
+const Card = ({
+  id,
+  preview,
+  title,
+  niveau,
+  personnes,
+  tempsPreparation,
+  onRemove,
+}) => {
   let photo = preview ? preview : IMG_BLANK;
 
   const handleDelete = () => {
-    alert("Voulez-vous supprimer ?");
+    onRemove(id, title);
   };
 
   return (

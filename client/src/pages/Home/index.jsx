@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../../components/Cards";
@@ -11,6 +11,8 @@ import {
 import Modal from "../../components/Modal";
 import Confirm from "../../components/Modal/Confirm";
 import { getAllRecipes } from "../../redux/actions/RecipeAction.action";
+import ConfirmReducer from "./ConfirmReducer";
+import DeleteConfirm from "./DeleteConfirm";
 import {
   ActionRow,
   AddButton,
@@ -23,6 +25,22 @@ import SearchBar from "./SearchBar";
 const Home = () => {
   const dispatch = useDispatch();
   const recepesCollection = useSelector((state) => state.RecipesReducer);
+
+  const [modalConfirm, dispatchModalComfirm] = useReducer(ConfirmReducer, {
+    isOpen: false,
+    id: null,
+    message: "",
+  });
+
+  const handleDelete = (id, titre) => {
+    let message = `Voulez-vous supprimer la recette ${titre} ?`;
+    let payload = { id, titre, message };
+    dispatchModalComfirm({ type: "TOGGLE_MODAL", payload });
+  };
+
+  const closeModal = () => {
+    dispatchModalComfirm({ type: "CLOSE_MODAL" });
+  };
 
   useEffect(() => {
     dispatch(getAllRecipes());
@@ -56,13 +74,20 @@ const Home = () => {
                   preview={recipes.photo}
                   personnes={recipes.personnes}
                   tempsPreparation={recipes.tempsPreparation}
+                  onRemove={handleDelete}
                 />
               </GridItems>
             ))
           : null}
       </ListCardRecipeContainer>
-      <Modal isOpen={true}>
-        <Confirm isOpen={true} />
+      <Modal isOpen={modalConfirm.isOpen}>
+        <Confirm isOpen={modalConfirm.isOpen} onClose={closeModal}>
+          <DeleteConfirm
+            id={modalConfirm.id}
+            alertMessage={modalConfirm.message}
+            cancelAction={closeModal}
+          />
+        </Confirm>
       </Modal>
     </HomeWrapper>
   );

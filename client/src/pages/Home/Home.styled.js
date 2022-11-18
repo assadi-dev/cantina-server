@@ -77,3 +77,58 @@ export const GridItems = styled.div`
   position: relative;
   flex: 1;
 `;
+
+export const DeleteContainer = styled.div`
+  padding: 15px 5px;
+  width: 350px;
+  line-height: 28px;
+  text-align: center;
+  .Message {
+    font-size: 16px;
+  }
+  @media (min-width: 768px) {
+    width: 550px;
+  }
+`;
+
+export const DeleteRowContainer = styled.div`
+  margin-top: 1rem;
+  width: 100%;
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1rem 0;
+  .grid-start {
+    justify-self: start;
+  }
+
+  .grid-end {
+    justify-self: end;
+  }
+`;
+
+export const ConfirmBtn = styled.button`
+  border-radius: 8px;
+  width: fit-content;
+  padding: 12px 22px;
+  background-color: var(--green-color);
+  color: var(--white);
+  text-transform: uppercase;
+  cursor: pointer;
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+export const CancelBtn = styled.button`
+  border-radius: 8px;
+  width: fit-content;
+  padding: 12px 22px;
+  background-color: var(--danger-color);
+  color: var(--white);
+  text-transform: uppercase;
+  cursor: pointer;
+  :active {
+    opacity: 0.5;
+  }
+`;

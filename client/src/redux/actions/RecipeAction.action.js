@@ -104,21 +104,19 @@ export const updateRecipes = (id, data) => {
   };
 };
 
-export const removeRecipes = (id, data) => {
+export const removeRecipes = (id) => {
   return async (dispatch) => {
     return new Promise((resolve, reject) => {
       try {
-        dispatch({ type: LOAD_DATA, payload: [] });
         Api.delete("/recipe/" + id)
           .then((res) => {
-            dispatch({ type: DELETE_RECIPE, payload: res.data });
-            resolve(data);
+            dispatch({ type: DELETE_RECIPE, payload: { id } });
+            resolve(res.data.message);
           })
           .catch((err) => {
             throw err;
           });
       } catch (error) {
-        console.log(error);
         reject(error);
       }
     });
