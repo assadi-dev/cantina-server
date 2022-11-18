@@ -19,9 +19,13 @@ import { removeItem } from "../../utils/Array";
 import { useFormik } from "formik";
 import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
 import SelectFlotingLabel from "../../components/Input/SelectFlotingLabel";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { findOneRecipes } from "../../redux/actions/RecipeAction.action";
+import {
+  findOneRecipes,
+  LoadData,
+  updateRecipes,
+} from "../../redux/actions/RecipeAction.action";
 import { sleep } from "../../utils/time";
 import { IMG_BLANK } from "../../constant/theme";
 import { extractQte, extractUnite } from "../../utils/textForm";
@@ -29,6 +33,7 @@ import { extractQte, extractUnite } from "../../utils/textForm";
 const EditRecipe = () => {
   const { id } = useParams();
   const [render, setRender] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const recipeSelector = useSelector((state) => state.RecipesReducer);
   const [listIngredient, setListingredient] = useState([]);
@@ -129,7 +134,12 @@ const EditRecipe = () => {
         ingredient.label,
       ]);
       let sendData = { ...values, etapes, ingredients };
-      console.log(sendData);
+
+      dispatch(updateRecipes(id, sendData)).then((res) => {
+        let successMessage = `${res.titre} à bien été mise à jour`;
+        alert(successMessage);
+        dispatch(LoadData()).then(() => navigate("/", { replace: true }));
+      });
     },
   });
 

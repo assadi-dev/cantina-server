@@ -20,9 +20,10 @@ import { useFormik } from "formik";
 import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
 import SelectFlotingLabel from "../../components/Input/SelectFlotingLabel";
 import { IMG_BLANK } from "../../constant/theme";
-import { addRecipes } from "../../redux/actions/RecipeAction.action";
+import { addRecipes, LoadData } from "../../redux/actions/RecipeAction.action";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { LOAD_DATA } from "../../redux/types/Recipes.type";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
@@ -91,10 +92,10 @@ const AddRecipe = () => {
         etapes,
         ingredients,
       };
-      //console.log(sendData);
+
       dispatch(addRecipes(sendData)).then((res) => {
         alert("Recette ajouté");
-        navigate("/", { replace: true });
+        dispatch(LoadData()).then(() => navigate("/", { replace: true }));
       });
     },
   });

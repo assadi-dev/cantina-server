@@ -8,6 +8,15 @@ import {
   UPDATE_RECIPE,
 } from "../types/Recipes.type";
 
+export const LoadData = () => {
+  return async (dispatch) => {
+    new Promise((resolve) => {
+      dispatch({ type: RETRIEVE_ALL_RECIPES, payload: [] });
+      resolve("Chargemen en cours");
+    });
+  };
+};
+
 export const getAllRecipes = () => {
   return async (dispatch) => {
     return new Promise((resolve, reject) => {

@@ -8,6 +8,8 @@ import {
   FilterSettingIcon,
   SearchIcon,
 } from "../../components/Icons/Icons";
+import Modal from "../../components/Modal";
+import Confirm from "../../components/Modal/Confirm";
 import { getAllRecipes } from "../../redux/actions/RecipeAction.action";
 import {
   ActionRow,
@@ -59,6 +61,9 @@ const Home = () => {
             ))
           : null}
       </ListCardRecipeContainer>
+      <Modal isOpen={true}>
+        <Confirm isOpen={true} />
+      </Modal>
     </HomeWrapper>
   );
 };
