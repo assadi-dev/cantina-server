@@ -29,6 +29,7 @@ import {
 import { sleep } from "../../utils/time";
 import { IMG_BLANK } from "../../constant/theme";
 import { extractQte, extractUnite } from "../../utils/textForm";
+import { NIVEAU_OPTIONS_VALUES } from "../../constant/project";
 
 const EditRecipe = () => {
   const { id } = useParams();
@@ -169,14 +170,10 @@ const EditRecipe = () => {
               <FormInputControl>
                 <SelectFlotingLabel
                   name="niveau"
-                  label="Difficulté"
+                  label="Niveau"
                   value={formik.values.niveau}
                   onChange={formik.handleChange}
-                  optionValues={[
-                    { value: "padawan", label: "Padawan" },
-                    { value: "jedi", label: "Jedi" },
-                    { value: "maitre", label: "Maître" },
-                  ]}
+                  optionValues={NIVEAU_OPTIONS_VALUES}
                 />
               </FormInputControl>
               <FormInputControl>

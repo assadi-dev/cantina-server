@@ -6,16 +6,12 @@ import {
   FIND_ONE_RECIPES,
   LOAD_DATA,
   RETRIEVE_ALL_RECIPES,
+  FILTER_RECIPE,
 } from "../types/Recipes.type";
 
 const initialState = {
   all: [],
   serchTerm: "",
-  filterParams: {
-    niveau: "",
-    nbPersonnes: { start: 0, end: 0 },
-    tempreparation: { start: 0, end: 0 },
-  },
   selected: null,
   isReady: false,
 };
@@ -43,6 +39,9 @@ const RecipesReducer = (state = initialState, action) => {
         return recipe;
       });
       return { ...state, all: updatedRecipe, isReady: true };
+
+    case FILTER_RECIPE:
+      return { ...state, all: payload, isReady: true };
 
     default:
       return state;

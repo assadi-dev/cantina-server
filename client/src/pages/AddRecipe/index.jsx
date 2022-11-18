@@ -24,6 +24,7 @@ import { addRecipes, LoadData } from "../../redux/actions/RecipeAction.action";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LOAD_DATA } from "../../redux/types/Recipes.type";
+import { NIVEAU_OPTIONS_VALUES } from "../../constant/project";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
@@ -125,14 +126,10 @@ const AddRecipe = () => {
             <FormInputControl>
               <SelectFlotingLabel
                 name="niveau"
-                label="Difficulté"
+                label="Niveau"
                 value={formik.values.niveau}
                 onChange={formik.handleChange}
-                optionValues={[
-                  { value: "padawan", label: "Padawan" },
-                  { value: "jedi", label: "Jedi" },
-                  { value: "maitre", label: "Maître" },
-                ]}
+                optionValues={NIVEAU_OPTIONS_VALUES}
               />
             </FormInputControl>
             <FormInputControl>

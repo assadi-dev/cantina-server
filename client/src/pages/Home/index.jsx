@@ -64,8 +64,9 @@ const Home = () => {
       </ActionRow>
 
       <ListCardRecipeContainer className="section-separator">
-        {recepesCollection.isReady
-          ? recepesCollection.all.map((recipes) => (
+        {recepesCollection.isReady ? (
+          recepesCollection.all.length ? (
+            recepesCollection.all.map((recipes) => (
               <GridItems key={recipes.id}>
                 <Card
                   id={recipes.id}
@@ -78,7 +79,10 @@ const Home = () => {
                 />
               </GridItems>
             ))
-          : null}
+          ) : (
+            <h3> Aucune Recette trouvé</h3>
+          )
+        ) : null}
       </ListCardRecipeContainer>
       <Modal isOpen={modalConfirm.isOpen}>
         <Confirm isOpen={modalConfirm.isOpen} onClose={closeModal}>

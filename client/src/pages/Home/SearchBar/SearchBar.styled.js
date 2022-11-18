@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import FloatingLabel from "../../../components/Input/FloatingLabel";
+import SelectFlotingLabel from "../../../components/Input/SelectFlotingLabel";
 import { DEFAULT_COLOR } from "../../../constant/theme";
 
 export const SearchBarContainer = styled.div`
@@ -84,4 +86,60 @@ export const FilterDropdowContainer = styled.div`
   transform: translateY(100%);
   z-index: 25;
   border-radius: 8px;
+  font-size: 14px;
+`;
+
+export const FilterHeader = styled.div`
+  padding: 10px 0;
+`;
+
+export const FilterContent = styled.div`
+  font-size: 12px;
+  .separator {
+    margin: 14px 0;
+  }
+`;
+
+export const FilterRowbottom = styled.div`
+  display: grid;
+  place-items: center;
+  padding: 8px 0 0 0;
+`;
+export const FilterBtn = styled.button`
+  padding: 8px 16px;
+  color: var(--white);
+  width: fit-content;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  cursor: pointer;
+  :active {
+    opacity: 0.5;
+  }
+`;
+
+export const SelectInputFilter = styled(SelectFlotingLabel)`
+  padding: 0;
+`;
+
+export const InputFilter = styled(FloatingLabel)`
+  padding: 0;
+`;
+
+export const RowInputFilter = styled.div`
+  display: grid;
+  grid-template-columns: 0.5fr 50px 0.5fr;
+  grid-gap: 1rem;
+  .middl-text {
+    text-align: center;
+    width: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .flex {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
 `;
