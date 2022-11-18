@@ -19,11 +19,16 @@ import { removeItem } from "../../utils/Array";
 import { useFormik } from "formik";
 import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
 import SelectFlotingLabel from "../../components/Input/SelectFlotingLabel";
+import { IMG_BLANK } from "../../constant/theme";
+import { addRecipes } from "../../redux/actions/RecipeAction.action";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
   const [listEtapes, setListEtape] = useState([]);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const addIngredient = () => {
     setListingredient((prevState) => [
       ...prevState,
@@ -69,10 +74,10 @@ const AddRecipe = () => {
       description: "",
       niveau: "padawan",
       personnes: 1,
-      tempsPreparation: "",
+      tempsPreparation: 0,
       ingredients: [],
       etapes: [],
-      photo: "",
+      photo: IMG_BLANK,
     },
     onSubmit: (values) => {
       let etapes = listEtapes.map((items) => items.content);
@@ -80,8 +85,17 @@ const AddRecipe = () => {
         ingredient.qte + ingredient.unite,
         ingredient.label,
       ]);
-      let sendData = { ...values, etapes, ingredients };
-      console.log(sendData);
+      let sendData = {
+        ...values,
+        tempsPreparation: Number(values.tempsPreparation),
+        etapes,
+        ingredients,
+      };
+      //console.log(sendData);
+      dispatch(addRecipes(sendData)).then((res) => {
+        alert("Recette ajouté");
+        navigate("/", { replace: true });
+      });
     },
   });
 
@@ -140,7 +154,7 @@ const AddRecipe = () => {
             </FormInputControl>
           </div>
           <div className="col-right">
-            <HeaderFormPreview></HeaderFormPreview>
+            <HeaderFormPreview img={formik.values.photo}></HeaderFormPreview>
           </div>
         </HeaderFormRecipes>
         <SectionForm>
@@ -164,12 +178,13 @@ const AddRecipe = () => {
         <SectionForm style={{ marginTop: 42 }}>
           <h3 className="titleFormSection">Etapes</h3>
           {listEtapes.length > 0 &&
-            listEtapes.map((etape) => (
+            listEtapes.map((etape, index) => (
               <EtapeInput
                 key={etape.id}
                 etape={etape}
                 onChange={handleChangeEtape}
                 onRemoveitem={removeElement}
+                numero={index + 1}
               />
             ))}
           <AddElementButton onClick={addEtapes}>

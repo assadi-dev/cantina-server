@@ -36,6 +36,6 @@ export const FloatingLabelContainer = styled.div`
     }
   }
   textarea {
-    resize: none;
+    resize: vertical;
   }
 `;

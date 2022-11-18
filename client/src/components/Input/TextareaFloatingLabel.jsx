@@ -13,7 +13,7 @@ const TextareaFloatingLabel = ({ label, ...props }) => {
 
   useEffect(() => {
     if (inputRef.current.value.length > 0) setValid(true);
-  }, []);
+  }, [inputRef.current]);
 
   return (
     <FloatingLabelContainer isFocus={focus}>

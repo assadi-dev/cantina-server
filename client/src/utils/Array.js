@@ -12,3 +12,21 @@ export const removeItem = (array, key, id) => {
 
   return array.filter((item) => item[key] != id);
 };
+
+/**
+ *
+ * @param {Array} array Tableau numerique [1,2,3,4]
+ * @returns
+ */
+export const extractMaxNumber = (array) => {
+  return Math.max.apply(null, array);
+};
+
+/**
+ *
+ * @param {Arraay} array Tableau numerique [1,2,3,4]
+ * @returns
+ */
+export const extractMinNumber = (array) => {
+  return Math.min.apply(null, array);
+};

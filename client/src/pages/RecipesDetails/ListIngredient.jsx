@@ -1,12 +1,19 @@
 import React from "react";
+import uniqid from "uniqid";
 
-const ListIngredient = () => {
+const ListIngredient = ({ ingredients }) => {
   return (
-    <ul>
-      <li>Ingredient</li>
-      <li>Ingredient</li>
-      <li>Ingredient</li>
-    </ul>
+    <>
+      {ingredients ? (
+        <ul>
+          {ingredients.map((ingredient) => (
+            <li key={uniqid()}>{ingredient.join(" ")}</li>
+          ))}
+        </ul>
+      ) : (
+        <p style={{ paddingTop: "1.2rem" }}>Pas d'ingredients</p>
+      )}
+    </>
   );
 };
 

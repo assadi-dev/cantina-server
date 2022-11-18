@@ -1,26 +1,23 @@
 import React from "react";
 import { StepIndicator } from "./RecipesDetail.styled";
+import uniqid from "uniqid";
 
-const ListEtapes = () => {
+const ListEtapes = ({ etapes }) => {
   return (
-    <ul>
-      <li>
-        <StepIndicator>1</StepIndicator>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Ullamcorper amet pulvinar
-          egestas at at augue tellus semper vel. Id ut rhoncus euismod aliquam
-          nec venenatis aliquam iaculis.
-        </p>
-      </li>
-      <li>
-        <StepIndicator>1</StepIndicator>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Ullamcorper amet pulvinar
-          egestas at at augue tellus semper vel. Id ut rhoncus euismod aliquam
-          nec venenatis aliquam iaculis.
-        </p>
-      </li>
-    </ul>
+    <>
+      {etapes ? (
+        <ul>
+          {etapes.map((etape, index) => (
+            <li key={uniqid()}>
+              <StepIndicator>{index + 1}</StepIndicator>
+              <p>{etape}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p style={{ paddingTop: "1.2rem" }}>Pas d'etapes</p>
+      )}
+    </>
   );
 };
 

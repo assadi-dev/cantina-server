@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IMG_BLANK } from "../../constant/theme";
 
 const imgTest =
   "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
@@ -34,7 +35,7 @@ export const HeaderFormRecipes = styled.div`
 `;
 
 export const HeaderFormPreview = styled.div`
-  background-image: url(${imgTest});
+  background-image: ${({ img }) => (img ? `url(${img})` : `url(${IMG_BLANK})`)};
   width: 250px;
   height: 250px;
   background-repeat: no-repeat;

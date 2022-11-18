@@ -26,31 +26,31 @@ const Card = ({ id, preview, title, niveau, personnes, tempsPreparation }) => {
       <CardBody>
         <div>
           <Link to={`recette/${id}`}>
-            <CardPreview src={photo} alt="Preview" />
-            <CardBodyRow>
-              <p className="title">{title}</p>
-              <Link to={`recette/modifier/${id}`}>
-                <IconCard className="edit" title="Modifier la recette">
-                  <PencilIcon />
-                </IconCard>
-              </Link>
-            </CardBodyRow>
-            <CardBodyRow>
-              <CardTextDetail>
-                <IconCard>
-                  <PersonesIcon />
-                </IconCard>
-                {`${personnes} ${pluriel(personnes, "personne", "personnes")}`}
-              </CardTextDetail>
-              <CardTextDetail title="Temps de péparation">
-                <IconCard>
-                  <ClockIcon />
-                </IconCard>
-                {tempsPreparation &&
-                  minToHourString(parseInt(tempsPreparation))}
-              </CardTextDetail>
-            </CardBodyRow>
+            <CardPreview src={photo} alt={`${title}-preview`} />
           </Link>
+          <CardBodyRow>
+            <p className="title">{title}</p>
+            <Link to={`recette/modifier/${id}`}>
+              <IconCard className="edit" title="Modifier la recette">
+                <PencilIcon />
+              </IconCard>
+            </Link>
+          </CardBodyRow>
+          <CardBodyRow>
+            <CardTextDetail>
+              <IconCard>
+                <PersonesIcon />
+              </IconCard>
+              {`${personnes} ${pluriel(personnes, "personne", "personnes")}`}
+            </CardTextDetail>
+            <CardTextDetail title="Temps de péparation">
+              <IconCard>
+                <ClockIcon />
+              </IconCard>
+              {tempsPreparation && minToHourString(parseInt(tempsPreparation))}
+            </CardTextDetail>
+          </CardBodyRow>
+
           <CardBodyRow>
             <IconCard
               className="delete"

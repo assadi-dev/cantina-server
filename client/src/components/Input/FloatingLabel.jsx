@@ -7,13 +7,13 @@ const FloatingLabel = ({ htmlFor, label, ...props }) => {
   const handleFocus = (e) => {
     let value = e.target.value;
     setFocus(() => !focus);
-    value.length > 0 ? setValid(true) : setValid(false);
+    value ? setValid(true) : setValid(false);
   };
   const inputRef = useRef();
 
   useEffect(() => {
-    if (inputRef.current.value.length > 0) setValid(true);
-  }, []);
+    if (inputRef.current.value) setValid(true);
+  }, [inputRef.current]);
 
   return (
     <FloatingLabelContainer isFocus={focus}>

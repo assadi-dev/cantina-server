@@ -1,5 +1,8 @@
 import React from "react";
 import {
+  ADD_RECIPE,
+  DELETE_RECIPE,
+  UPDATE_RECIPE,
   FIND_ONE_RECIPES,
   LOAD_DATA,
   RETRIEVE_ALL_RECIPES,
@@ -8,7 +11,11 @@ import {
 const initialState = {
   all: [],
   serchTerm: "",
-  filtered: [],
+  filterParams: {
+    niveau: "",
+    nbPersonnes: { start: 0, end: 0 },
+    tempreparation: { start: 0, end: 0 },
+  },
   selected: null,
   isReady: false,
 };
@@ -23,6 +30,20 @@ const RecipesReducer = (state = initialState, action) => {
       return { ...state, all: payload, isReady: true };
     case FIND_ONE_RECIPES:
       return { ...state, selected: payload, isReady: true };
+    case ADD_RECIPE:
+      return { ...state, all: [payload, ...state.all], isReady: true };
+    case DELETE_RECIPE:
+      let removedRecipe = state.all.filter((recipe) => recipe.id != payload.id);
+      return { ...state, all: removedRecipe, isReady: true };
+    case UPDATE_RECIPE:
+      let updatedRecipe = state.all.map((recipe) => {
+        if (recipe.id == payload.id) {
+          return payload;
+        }
+        return recipe;
+      });
+      return { ...state, all: updatedRecipe, isReady: true };
+
     default:
       return state;
   }

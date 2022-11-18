@@ -3,7 +3,7 @@ import FloatingLabel from "../../components/Input/FloatingLabel";
 import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
 import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
 
-const EtapeInput = ({ etape, onChange, onRemoveitem }) => {
+const EtapeInput = ({ etape, onChange, onRemoveitem, numero }) => {
   const { id, content } = etape;
   const [inputvalue, setInputValue] = useState({
     id,
@@ -29,7 +29,7 @@ const EtapeInput = ({ etape, onChange, onRemoveitem }) => {
       <div className="etapes">
         <TextareaFloatingLabel
           name="content"
-          label="Etape"
+          label={"Etape " + numero}
           value={inputvalue.content}
           onChange={handleChange}
         />
