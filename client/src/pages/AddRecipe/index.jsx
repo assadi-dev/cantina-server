@@ -3,12 +3,14 @@ import { AddIcon } from "../../components/Icons/Icons";
 import FloatingLabel from "../../components/Input/FloatingLabel";
 import {
   AddElementButton,
+  AddPhotoBtn,
   FormBottom,
   FormInputControl,
   FormRecipeContainer,
   HeaderFormPreview,
   HeaderFormRecipes,
   IconButton,
+  RowBtnContainer,
   SectionForm,
   SubmitBtn,
 } from "./FormRecipe.styled";
@@ -152,7 +154,12 @@ const AddRecipe = () => {
             </FormInputControl>
           </div>
           <div className="col-right">
-            <HeaderFormPreview img={formik.values.photo}></HeaderFormPreview>
+            <div>
+              <HeaderFormPreview img={formik.values.photo}></HeaderFormPreview>
+              <RowBtnContainer>
+                <AddPhotoBtn>Ajouter une photo</AddPhotoBtn>
+              </RowBtnContainer>
+            </div>
           </div>
         </HeaderFormRecipes>
         <SectionForm>

@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { IMG_BLANK } from "../../constant/theme";
 
-const imgTest =
-  "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80";
-
 export const FormRecipeContainer = styled.div`
   margin-top: 1.5rem;
   width: 100%;
@@ -103,10 +100,32 @@ export const SubmitBtn = styled.button`
   text-align: center;
   text-transform: uppercase;
   background-color: var(--primary-color);
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.25);
+
   :disabled {
     opacity: 0.5;
   }
   :active {
     opacity: 0.5;
   }
+`;
+
+export const RowBtnContainer = styled.div`
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+`;
+
+export const AddPhotoBtn = styled.button`
+  width: fit-content;
+  padding: 12px 22px;
+  color: var(--white);
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.25);
 `;

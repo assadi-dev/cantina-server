@@ -32,3 +32,13 @@ select {
     outline: none;
     background-color: transparent;
 }
+
+button{
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+button:active{
+    opacity: 0.5;
+}
+
