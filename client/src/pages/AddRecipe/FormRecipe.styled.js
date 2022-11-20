@@ -25,16 +25,30 @@ export const FormInputControl = styled.div`
 
 export const HeaderFormRecipes = styled.div`
   display: grid;
-  grid-template-columns: 1fr 400px;
-  grid-gap: 25px;
+  grid-template-areas:
+    "b"
+    "a";
+  @media (min-width: 550px) {
+    grid-template-columns: 1fr 400px;
+    grid-gap: 25px;
+    grid-template-areas: "a b";
+  }
   .col-left {
-    width: 80%;
-    justify-content: flex-start;
+    grid-area: a;
+    width: 100%;
+    justify-content: center;
+    @media (min-width: 550px) {
+      justify-content: flex-start;
+    }
   }
   .col-right {
+    grid-area: b;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    @media (min-width: 550px) {
+      justify-content: flex-end;
+    }
   }
 `;
 
@@ -59,16 +73,84 @@ export const SectionForm = styled.div`
 export const IngredientRowinput = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+  @media (min-width: 550px) {
+    @media (min-width: 550px) {
+      width: fit-content;
+    }
+  }
   .qte {
-    max-width: 100px;
+    min-width: 35px;
+    max-width: 50px;
+    @media (min-width: 550px) {
+      max-width: 100px;
+    }
   }
   .unite {
-    max-width: 200px;
+    min-width: 45px;
+    max-width: 80px;
     margin: 0 1.4rem;
+    @media (min-width: 550px) {
+      max-width: 200px;
+    }
   }
   .ingredients {
-    min-width: 250px;
-    max-width: 350px;
+    width: 100%;
+    @media (min-width: 550px) {
+      min-width: 250px;
+      max-width: 350px;
+    }
+  }
+  .removeBtn {
+    position: absolute;
+    border-radius: 100px;
+    height: 20px;
+    width: 20px;
+    top: 50%;
+    transform: translateY(-50%) translateX(50%);
+    right: 0;
+    cursor: pointer;
+    background-color: var(--danger-color);
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    @media (min-width: 550px) {
+      height: 25px;
+      width: 25px;
+    }
+    svg {
+      width: 13px;
+      height: 13px;
+    }
+  }
+`;
+
+export const RowInputEtape = styled.div`
+  position: relative;
+  width: 100%;
+  @media (min-width: 550px) {
+  }
+  .removeBtn {
+    position: absolute;
+    border-radius: 100px;
+    height: 20px;
+    width: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    cursor: pointer;
+    background-color: var(--danger-color);
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    @media (min-width: 550px) {
+      height: 25px;
+      width: 25px;
+    }
+    svg {
+      width: 13px;
+      height: 13px;
+    }
   }
 `;
 
@@ -141,9 +223,10 @@ export const ModalInputPhotoContainer = styled.div`
   width: 80%;
   min-height: 100px;
   padding: 12px 18px;
-  @media screen and (min-width: 768px) {
+  background-color: var(--white);
+  @media screen and (min-width: 550px) {
     width: 550px;
-    background-color: var(--white);
+
     border-radius: 5px;
   }
 `;

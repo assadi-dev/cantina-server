@@ -100,7 +100,7 @@ const AddRecipe = () => {
       description: "",
       niveau: "padawan",
       personnes: 1,
-      tempsPreparation: 0,
+      tempsPreparation: 5,
       ingredients: [],
       etapes: [],
       photo: IMG_BLANK,

@@ -5,10 +5,13 @@ const imgTest =
 
 export const CarouselWrapper = styled.div`
   width: 100%;
-  height: 405px;
+  height: 205px;
   background-image: url(${imgTest});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   border-radius: 8px;
+  @media screen and (min-width: 550px) {
+    height: 405px;
+  }
 `;

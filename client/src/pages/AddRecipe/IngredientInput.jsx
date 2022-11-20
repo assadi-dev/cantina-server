@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { CrossIcon } from "../../components/Icons/Icons";
 import FloatingLabel from "../../components/Input/FloatingLabel";
 import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
 
@@ -52,8 +53,13 @@ const IngredientInput = ({ ingredient, onChange, onRemoveitem }) => {
             onChange={handleChange}
           />
         </div>
-        <button type="button" onClick={handleRemoveItem}>
-          Retirer
+        <button
+          type="button"
+          onClick={handleRemoveItem}
+          className="removeBtn"
+          title="Retirer cette ingredient"
+        >
+          <CrossIcon />
         </button>
       </IngredientRowinput>
     </FormInputControl>

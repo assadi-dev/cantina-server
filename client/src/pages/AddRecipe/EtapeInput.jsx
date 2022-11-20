@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { CrossIcon } from "../../components/Icons/Icons";
 import FloatingLabel from "../../components/Input/FloatingLabel";
 import TextareaFloatingLabel from "../../components/Input/TextareaFloatingLabel";
-import { FormInputControl, IngredientRowinput } from "./FormRecipe.styled";
+import {
+  FormInputControl,
+  IngredientRowinput,
+  RowInputEtape,
+} from "./FormRecipe.styled";
 
 const EtapeInput = ({ etape, onChange, onRemoveitem, numero }) => {
   const { id, content } = etape;
@@ -26,17 +31,24 @@ const EtapeInput = ({ etape, onChange, onRemoveitem, numero }) => {
 
   return (
     <FormInputControl>
-      <div className="etapes">
-        <TextareaFloatingLabel
-          name="content"
-          label={"Etape " + numero}
-          value={inputvalue.content}
-          onChange={handleChange}
-        />
-      </div>
-      <button type="button" onClick={() => handleRemoveItem()}>
-        retirer
-      </button>
+      <RowInputEtape>
+        <div className="etapes">
+          <TextareaFloatingLabel
+            name="content"
+            label={"Etape " + numero}
+            value={inputvalue.content}
+            onChange={handleChange}
+          />
+        </div>
+        <button
+          type="button"
+          onClick={() => handleRemoveItem()}
+          className="removeBtn"
+          title="Retirer cette étape"
+        >
+          <CrossIcon />
+        </button>
+      </RowInputEtape>
     </FormInputControl>
   );
 };

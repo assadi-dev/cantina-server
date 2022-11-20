@@ -3,10 +3,13 @@ import styled from "styled-components";
 export const RecipesDetailWrapper = styled.div`
     width:100%
     margin-top:1.8rem;
-    padding:22px 18px;
+    padding:22px 5px;
     .section {
     margin-top:1.2rem;
     margin-bottom:1.2rem;
+    @media (min-width:550px){
+      padding:22px 18px;
+    }
   }
 
   .padawan {
@@ -40,7 +43,13 @@ export const HeaderPresentation = styled.div`
 
 export const HeaderDetailRow = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  @media (min-width: 550px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 export const Preview = styled.img`
@@ -48,11 +57,20 @@ export const Preview = styled.img`
   height: 198px;
   border-radius: 8px;
   object-fit: cover;
+  margin-bottom: 2.8rem;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 550px) {
+    margin: 0;
+  }
 `;
 
 export const DetailPreparation = styled.div`
   ul {
-    margin-left: 28px;
+    margin-left: 0px;
+    @media (min-width: 550px) {
+      margin-left: 28px;
+    }
 
     li {
       padding-bottom: 1.8rem;
@@ -97,6 +115,7 @@ export const HeaderSection = styled.div`
 export const IngredientSection = styled.section`
   margin: 1.4rem 0;
   padding: 1rem 0;
+
   ul {
     padding: 1.2rem;
     li {
@@ -111,13 +130,17 @@ export const EtapesSection = styled.section`
   margin: 1.4rem 0;
   padding: 1rem 0;
   ul {
-    padding-left: 1rem;
+    @media (min-width: 550px) {
+      padding-left: 1rem;
+    }
     li {
       padding-top: 1.2rem;
       padding-bottom: 1.2rem;
       margin-bottom: 1rem;
-      display: flex;
-      align-items: flex-start;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      align-items: start;
+      grid-gap: 0.8rem;
     }
   }
 `;

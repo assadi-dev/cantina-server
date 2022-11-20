@@ -16,20 +16,27 @@ export const ActionRow = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   .col {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-
     min-width: 250px;
     align-items: center;
   }
 
   .start {
     justify-content: flex-start;
+    margin-bottom: 1.5rem;
   }
   .end {
     justify-content: flex-end;
+  }
+  @media (min-width: 550px) {
+    flex-direction: row;
+    .start {
+      margin-bottom: 0;
+    }
   }
 `;
 
@@ -59,7 +66,7 @@ export const ListCardRecipeContainer = styled.section`
   grid-gap: 28px;
   width: 100%;
   padding: 2.2rem 0 0;
-  @media (min-width: 568px) {
+  @media (min-width: 550px) {
     grid-template-columns: repeat(auto-fill, 22rem);
     justify-content: center;
   }
@@ -80,13 +87,13 @@ export const GridItems = styled.div`
 
 export const DeleteContainer = styled.div`
   padding: 15px 5px;
-  width: 350px;
+  width: 250px;
   line-height: 28px;
   text-align: center;
   .Message {
     font-size: 16px;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 550px) {
     width: 550px;
   }
 `;
