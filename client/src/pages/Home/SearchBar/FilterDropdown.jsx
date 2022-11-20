@@ -16,7 +16,7 @@ import {
 
 const FilterDropdown = ({ isOpen, onClose }) => {
   const [filterParams, setFilterParams] = useState({
-    niveau: "padawan",
+    niveau: "all",
     tempsPreparation: { start: "1", end: "15" },
     personnes: { start: "1", end: "8" },
   });
@@ -52,7 +52,7 @@ const FilterDropdown = ({ isOpen, onClose }) => {
             <SelectInputFilter
               inputContainerStyle={{ padding: 0 }}
               optionValues={[
-                { value: "", label: "Tout les niveaux" },
+                { value: "all", label: "Tout les niveaux" },
                 ...NIVEAU_OPTIONS_VALUES,
               ]}
               onChange={handleChangeNiveau}

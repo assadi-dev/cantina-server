@@ -133,9 +133,10 @@ export const filtered_recipes = ({ niveau, personnes, tempsPreparation }) => {
           .then((res) => {
             let allRecipes = res.data;
 
-            filteredRecipes = allRecipes.filter((recipe) =>
-              recipe.niveau.includes(niveau)
-            );
+            filteredRecipes =
+              niveau != "all"
+                ? allRecipes.filter((recipe) => recipe.niveau.includes(niveau))
+                : allRecipes;
 
             if (personnes.start || personnes.end) {
               filteredRecipes = filteredRecipes.filter(

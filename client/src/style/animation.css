@@ -9,11 +9,12 @@
     margin-top:1rem;
 }
 
-.text-loader:first-of-type{
+.onParagraphe:first-of-type,.text-loader:first-of-type{
     margin-top:0;
 }
 
 .onParagraphe{
     height:40px;
     width: 100%;
+    margin-top:1rem;
 }

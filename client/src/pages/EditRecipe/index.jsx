@@ -34,6 +34,8 @@ import { extractQte, extractUnite } from "../../utils/textForm";
 import { NIVEAU_OPTIONS_VALUES } from "../../constant/project";
 import ModaInputPhoto from "../AddRecipe/ModaInputPhoto";
 import Modal from "../../components/Modal";
+import Skeleton from "react-loading-skeleton";
+import { motion } from "framer-motion";
 
 const EditRecipe = () => {
   const { id } = useParams();
@@ -171,28 +173,45 @@ const EditRecipe = () => {
 
   return (
     <FormRecipeContainer>
-      <h2>{titre}</h2>
-      {render && (
-        <form onSubmit={formik.handleSubmit}>
-          <HeaderFormRecipes>
-            <div className="col-left">
-              <FormInputControl>
+      <h2 style={{ marginBottom: "1.5rem" }}>{titre}</h2>
+
+      <form onSubmit={formik.handleSubmit}>
+        <HeaderFormRecipes>
+          <div className="col-left">
+            <FormInputControl>
+              {render ? (
                 <FloatingLabel
                   label="Titre"
                   name="titre"
                   value={formik.values.titre}
                   onChange={formik.handleChange}
                 />
-              </FormInputControl>
-              <FormInputControl>
+              ) : (
+                <Skeleton
+                  containerClassName="img-loader"
+                  className="onParagraphe"
+                  count="1"
+                />
+              )}
+            </FormInputControl>
+            <FormInputControl>
+              {render ? (
                 <TextareaFloatingLabel
                   name="description"
                   label="Description"
                   value={formik.values.description}
                   onChange={formik.handleChange}
                 />
-              </FormInputControl>
-              <FormInputControl>
+              ) : (
+                <Skeleton
+                  containerClassName="img-loader"
+                  className="onParagraphe"
+                  count="1"
+                />
+              )}
+            </FormInputControl>
+            <FormInputControl>
+              {render ? (
                 <SelectFlotingLabel
                   name="niveau"
                   label="Niveau"
@@ -200,8 +219,16 @@ const EditRecipe = () => {
                   onChange={formik.handleChange}
                   optionValues={NIVEAU_OPTIONS_VALUES}
                 />
-              </FormInputControl>
-              <FormInputControl>
+              ) : (
+                <Skeleton
+                  containerClassName="img-loader"
+                  className="onParagraphe"
+                  count="1"
+                />
+              )}
+            </FormInputControl>
+            <FormInputControl>
+              {render ? (
                 <FloatingLabel
                   name="personnes"
                   label="NB Perspnnes"
@@ -210,17 +237,33 @@ const EditRecipe = () => {
                   value={formik.values.personnes}
                   onChange={formik.handleChange}
                 />
-              </FormInputControl>
-              <FormInputControl>
+              ) : (
+                <Skeleton
+                  containerClassName="img-loader"
+                  className="onParagraphe"
+                  count="1"
+                />
+              )}
+            </FormInputControl>
+            <FormInputControl>
+              {render ? (
                 <FloatingLabel
                   name="tempsPreparation"
                   label="Temps préparation (min)"
                   value={formik.values.tempsPreparation}
                   onChange={formik.handleChange}
                 />
-              </FormInputControl>
-            </div>
-            <div className="col-right">
+              ) : (
+                <Skeleton
+                  containerClassName="img-loader"
+                  className="onParagraphe"
+                  count="1"
+                />
+              )}
+            </FormInputControl>
+          </div>
+          <div className="col-right">
+            {render ? (
               <div>
                 <HeaderFormPreview
                   img={formik.values.photo}
@@ -231,30 +274,38 @@ const EditRecipe = () => {
                   </AddPhotoBtn>
                 </RowBtnContainer>
               </div>
-            </div>
-          </HeaderFormRecipes>
-          <SectionForm>
-            <h3 className="titleFormSection">Ingredients</h3>
-            {listIngredient.length > 0 &&
-              listIngredient.map((ingredient) => (
+            ) : (
+              <Skeleton
+                containerClassName="img-loader"
+                className="img-loader"
+                count="1"
+              />
+            )}
+          </div>
+        </HeaderFormRecipes>
+        <SectionForm>
+          <h3 className="titleFormSection">Ingredients</h3>
+          {listIngredient.length > 0
+            ? listIngredient.map((ingredient) => (
                 <IngredientInput
                   key={ingredient.id}
                   ingredient={ingredient}
                   onChange={handleChangeIngredient}
                   onRemoveitem={removeElement}
                 />
-              ))}
-            <AddElementButton onClick={addIngredient}>
-              <IconButton>
-                <AddIcon />
-              </IconButton>
-              Ajouter un ingredient
-            </AddElementButton>
-          </SectionForm>
-          <SectionForm style={{ marginTop: 42 }}>
-            <h3 className="titleFormSection">Etapes</h3>
-            {listEtapes.length > 0 &&
-              listEtapes.map((etape, index) => (
+              ))
+            : null}
+          <AddElementButton onClick={addIngredient}>
+            <IconButton>
+              <AddIcon />
+            </IconButton>
+            Ajouter un ingredient
+          </AddElementButton>
+        </SectionForm>
+        <SectionForm style={{ marginTop: 42 }}>
+          <h3 className="titleFormSection">Etapes</h3>
+          {listEtapes.length > 0
+            ? listEtapes.map((etape, index) => (
                 <EtapeInput
                   key={etape.id}
                   etape={etape}
@@ -262,19 +313,20 @@ const EditRecipe = () => {
                   onRemoveitem={removeElement}
                   numero={index + 1}
                 />
-              ))}
-            <AddElementButton onClick={addEtapes}>
-              <IconButton>
-                <AddIcon />
-              </IconButton>
-              Ajouter une etape
-            </AddElementButton>
-          </SectionForm>
-          <FormBottom>
-            <SubmitBtn type="submit">Mettre à jour</SubmitBtn>
-          </FormBottom>
-        </form>
-      )}
+              ))
+            : null}
+          <AddElementButton onClick={addEtapes}>
+            <IconButton>
+              <AddIcon />
+            </IconButton>
+            Ajouter une etape
+          </AddElementButton>
+        </SectionForm>
+        <FormBottom>
+          <SubmitBtn type="submit">Mettre à jour</SubmitBtn>
+        </FormBottom>
+      </form>
+
       {photo && (
         <Modal isOpen={modalPhoto.isOpen} onClose={handleModalPhoto}>
           <ModaInputPhoto
