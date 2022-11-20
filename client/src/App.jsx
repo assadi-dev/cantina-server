@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./style/reset.css";
 import "./style/root.css";
+
+import { motion } from "framer-motion";
 import Layout from "./components/Layout";
 import AddRecipe from "./pages/AddRecipe";
 import Home from "./pages/Home";

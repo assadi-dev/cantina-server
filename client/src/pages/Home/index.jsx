@@ -21,6 +21,7 @@ import {
   ListCardRecipeContainer,
 } from "./Home.styled";
 import SearchBar from "./SearchBar";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -66,18 +67,25 @@ const Home = () => {
       <ListCardRecipeContainer className="section-separator">
         {recepesCollection.isReady ? (
           recepesCollection.all.length ? (
-            recepesCollection.all.map((recipes) => (
-              <GridItems key={recipes.id}>
-                <Card
-                  id={recipes.id}
-                  title={recipes.titre}
-                  niveau={recipes.niveau}
-                  preview={recipes.photo}
-                  personnes={recipes.personnes}
-                  tempsPreparation={recipes.tempsPreparation}
-                  onRemove={handleDelete}
-                />
-              </GridItems>
+            recepesCollection.all.map((recipes, i) => (
+              <motion.div
+                key={recipes.id}
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: i * 0.02 }}
+              >
+                <GridItems>
+                  <Card
+                    id={recipes.id}
+                    title={recipes.titre}
+                    niveau={recipes.niveau}
+                    preview={recipes.photo}
+                    personnes={recipes.personnes}
+                    tempsPreparation={recipes.tempsPreparation}
+                    onRemove={handleDelete}
+                  />
+                </GridItems>
+              </motion.div>
             ))
           ) : (
             <h3> Aucune Recette trouvé</h3>

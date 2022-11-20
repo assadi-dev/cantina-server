@@ -18,6 +18,8 @@ import {
 } from "./RecipesDetail.styled";
 import { findOneRecipes } from "../../redux/actions/RecipeAction.action";
 import { sleep } from "../../utils/time";
+import { motion } from "framer-motion";
+import Skeleton from "react-loading-skeleton";
 
 const RecipesDetails = () => {
   const { id } = useParams();
@@ -49,32 +51,104 @@ const RecipesDetails = () => {
           <h1 className="title">{titre}</h1>
           <HeaderDetailRow className="section">
             {render ? (
-              <Preview src={photo ? photo : IMG_BLANK} alt={`${titre}-photo`} />
-            ) : null}
+              <motion.div
+                animate={{ x: 0, opacity: 1 }}
+                initial={{ x: 10, opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <Preview
+                  src={photo ? photo : IMG_BLANK}
+                  alt={`${titre}-photo`}
+                />
+              </motion.div>
+            ) : (
+              <Skeleton
+                containerClassName="img-loader"
+                className="img-loader"
+              />
+            )}
             <DetailPreparation>
               {render ? (
-                <ListPreparation
-                  tempsPreparation={tempsPreparation}
-                  niveau={niveau}
-                  personnes={personnes}
-                />
-              ) : null}
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                >
+                  <ListPreparation
+                    tempsPreparation={tempsPreparation}
+                    niveau={niveau}
+                    personnes={personnes}
+                  />
+                </motion.div>
+              ) : (
+                <div className="detailLoader">
+                  <Skeleton
+                    containerClassName="img-loader"
+                    className="text-loader"
+                    count="3"
+                  />
+                </div>
+              )}
             </DetailPreparation>
           </HeaderDetailRow>
         </HeaderPresentation>
       </section>
       <DescriptionSection>
         <HeaderSection>Description</HeaderSection>
-        {render ? <p>{description}</p> : null}
+        {render ? (
+          <motion.p
+            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 10, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+          >
+            {description}
+          </motion.p>
+        ) : (
+          <Skeleton
+            containerClassName="img-loader"
+            className="onParagraphe"
+            count="1"
+          />
+        )}
       </DescriptionSection>
       <IngredientSection>
         <HeaderSection>Ingredients</HeaderSection>
-        {render ? <ListIngredient ingredients={ingredients} /> : null}
+        {render ? (
+          <motion.div
+            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 10, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+          >
+            {" "}
+            <ListIngredient ingredients={ingredients} />
+          </motion.div>
+        ) : (
+          <Skeleton
+            containerClassName="img-loader"
+            className="text-loader"
+            count="4"
+          />
+        )}
       </IngredientSection>
 
       <EtapesSection>
         <HeaderSection>Etapes</HeaderSection>
-        {render ? <ListEtapes etapes={etapes} /> : null}
+        {render ? (
+          <motion.div
+            animate={{ x: 0, opacity: 1 }}
+            initial={{ x: 10, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+          >
+            {" "}
+            <ListEtapes etapes={etapes} />{" "}
+          </motion.div>
+        ) : (
+          <Skeleton
+            containerClassName="img-loader"
+            className="text-loader"
+            count="4"
+          />
+        )}
       </EtapesSection>
     </RecipesDetailWrapper>
   );

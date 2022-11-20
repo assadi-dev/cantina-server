@@ -11,12 +11,13 @@ import {
 } from "./FormRecipe.styled";
 
 const ModaInputPhoto = ({ isOpen, onChange, onClose, value }) => {
-  const [inputValue, setInputValue] = useState({ value: value, error: "" });
+  const [inputValue, setInputValue] = useState({ value, error: "" });
 
   const resetForm = () => {
     setInputValue({ value: "", error: "" });
   };
 
+  console.log(value);
   const handleSubmitPhoto = (e) => {
     e.preventDefault();
     let error = isValidUrl(inputValue.value) ? "" : "URL Invalide";

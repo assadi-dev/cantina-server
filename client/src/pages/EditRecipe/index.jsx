@@ -275,14 +275,16 @@ const EditRecipe = () => {
           </FormBottom>
         </form>
       )}
-      <Modal isOpen={modalPhoto.isOpen} onClose={handleModalPhoto}>
-        <ModaInputPhoto
-          isOpen={modalPhoto.isOpen}
-          onClose={handleModalPhoto}
-          onChange={handleChangePhoto}
-          value={formik.values.photo}
-        />
-      </Modal>
+      {photo && (
+        <Modal isOpen={modalPhoto.isOpen} onClose={handleModalPhoto}>
+          <ModaInputPhoto
+            isOpen={modalPhoto.isOpen}
+            onClose={handleModalPhoto}
+            onChange={handleChangePhoto}
+            value={photo}
+          />
+        </Modal>
+      )}
     </FormRecipeContainer>
   );
 };

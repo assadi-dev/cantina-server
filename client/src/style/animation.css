@@ -1,0 +1,19 @@
+.img-loader{
+    width: 258px;
+    height: 198px;
+  }
+
+.text-loader{
+    height:20px;
+    width: 340px;
+    margin-top:1rem;
+}
+
+.text-loader:first-of-type{
+    margin-top:0;
+}
+
+.onParagraphe{
+    height:40px;
+    width: 100%;
+}

@@ -21,6 +21,10 @@ export const RecipesDetailWrapper = styled.div`
     color: var(--master-color);
     font-weight: bold;
   }
+  .detailLoader{
+    margin-left: 1rem;height:240px; width:550px;
+  }
+
 `;
 
 export const HeaderPresentation = styled.div`
