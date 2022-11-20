@@ -42,8 +42,7 @@ const AddRecipe = () => {
   };
 
   const [modalPhoto, setModalPhoto] = useState({
-    isOpen: true,
-    value: "",
+    isOpen: false,
     label: "Ajouter une photo",
   });
 
@@ -80,7 +79,17 @@ const AddRecipe = () => {
 
   //Modal Ajout Photo + veriff
   const handleModalPhoto = () => {
-    setModalPhoto(() => !modalPhoto.isOpen);
+    setModalPhoto(() => ({
+      ...modalPhoto,
+      isOpen: !modalPhoto.isOpen,
+      label: formik.values.photo ? "Remplacer la photo" : "Ajouter une photo",
+    }));
+  };
+
+  //Mise à jour du state photo du formulaire
+
+  const handleChangePhoto = (value) => {
+    formik.setFieldValue("photo", value);
   };
 
   //Envoie des donnée complete
@@ -170,7 +179,7 @@ const AddRecipe = () => {
             <div>
               <HeaderFormPreview img={formik.values.photo}></HeaderFormPreview>
               <RowBtnContainer>
-                <AddPhotoBtn onClick={handleModalPhoto}>
+                <AddPhotoBtn type="button" onClick={handleModalPhoto}>
                   {modalPhoto.label}
                 </AddPhotoBtn>
               </RowBtnContainer>
@@ -219,8 +228,13 @@ const AddRecipe = () => {
         </FormBottom>
       </form>
 
-      <Modal isOpen={true}>
-        <ModaInputPhoto />
+      <Modal isOpen={modalPhoto.isOpen} onClose={handleModalPhoto}>
+        <ModaInputPhoto
+          isOpen={modalPhoto.isOpen}
+          onClose={handleModalPhoto}
+          onChange={handleChangePhoto}
+          value={formik.values.photo}
+        />
       </Modal>
     </FormRecipeContainer>
   );

@@ -171,3 +171,10 @@ export const ModalInputPhoto = styled.div`
   align-items: center;
   padding-top: 10px;
 `;
+
+export const ErrorMessage = styled.p`
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+  color: var(--danger-color);
+  font-size: 14px;
+`;

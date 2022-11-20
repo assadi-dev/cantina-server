@@ -32,6 +32,8 @@ import { sleep } from "../../utils/time";
 import { IMG_BLANK } from "../../constant/theme";
 import { extractQte, extractUnite } from "../../utils/textForm";
 import { NIVEAU_OPTIONS_VALUES } from "../../constant/project";
+import ModaInputPhoto from "../AddRecipe/ModaInputPhoto";
+import Modal from "../../components/Modal";
 
 const EditRecipe = () => {
   const { id } = useParams();
@@ -116,6 +118,27 @@ const EditRecipe = () => {
     setListingredient(() => upDateIngredient);
   };
 
+  //Modal Ajout Photo + veriff
+
+  const [modalPhoto, setModalPhoto] = useState({
+    isOpen: false,
+    label: "Remplacer la photo",
+  });
+
+  const handleModalPhoto = () => {
+    setModalPhoto(() => ({
+      ...modalPhoto,
+      isOpen: !modalPhoto.isOpen,
+      label: formik.values.photo ? "Remplacer la photo" : "Ajouter une photo",
+    }));
+  };
+
+  //Mise à jour du state photo du formulaire
+
+  const handleChangePhoto = (value) => {
+    formik.setFieldValue("photo", value);
+  };
+
   //Envoie des donnée complete
 
   const formik = useFormik({
@@ -127,7 +150,7 @@ const EditRecipe = () => {
       personnes: personnes ? personnes : "",
       tempsPreparation: tempsPreparation ? tempsPreparation : "",
       ingredients: listIngredient ? listIngredient : [],
-      etapes: [],
+      etapes: etapes ? etapes : [],
       photo: photo ? photo : IMG_BLANK,
     },
     onSubmit: (values) => {
@@ -203,7 +226,9 @@ const EditRecipe = () => {
                   img={formik.values.photo}
                 ></HeaderFormPreview>
                 <RowBtnContainer>
-                  <AddPhotoBtn>Ajouter une photo</AddPhotoBtn>
+                  <AddPhotoBtn type="button" onClick={handleModalPhoto}>
+                    {modalPhoto.label}
+                  </AddPhotoBtn>
                 </RowBtnContainer>
               </div>
             </div>
@@ -250,6 +275,14 @@ const EditRecipe = () => {
           </FormBottom>
         </form>
       )}
+      <Modal isOpen={modalPhoto.isOpen} onClose={handleModalPhoto}>
+        <ModaInputPhoto
+          isOpen={modalPhoto.isOpen}
+          onClose={handleModalPhoto}
+          onChange={handleChangePhoto}
+          value={formik.values.photo}
+        />
+      </Modal>
     </FormRecipeContainer>
   );
 };
