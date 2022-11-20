@@ -36,6 +36,7 @@ import ModaInputPhoto from "../AddRecipe/ModaInputPhoto";
 import Modal from "../../components/Modal";
 import Skeleton from "react-loading-skeleton";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const EditRecipe = () => {
   const { id } = useParams();
@@ -173,6 +174,10 @@ const EditRecipe = () => {
 
   return (
     <FormRecipeContainer>
+      <Helmet>
+        <title>Cantina - Modifier une recette</title>
+      </Helmet>
+
       <h2 style={{ marginBottom: "1.5rem" }}>{titre}</h2>
 
       <form onSubmit={formik.handleSubmit}>

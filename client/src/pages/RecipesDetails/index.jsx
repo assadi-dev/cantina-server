@@ -20,6 +20,7 @@ import { findOneRecipes } from "../../redux/actions/RecipeAction.action";
 import { sleep } from "../../utils/time";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
+import { Helmet } from "react-helmet";
 
 const RecipesDetails = () => {
   const { id } = useParams();
@@ -46,6 +47,9 @@ const RecipesDetails = () => {
 
   return (
     <RecipesDetailWrapper>
+      <Helmet>
+        <title>Cantina {titre ? " - " + titre : ""} </title>
+      </Helmet>
       <section className="section">
         <HeaderPresentation>
           <h1 className="title">{titre}</h1>

@@ -28,6 +28,7 @@ import { useDispatch } from "react-redux";
 import { NIVEAU_OPTIONS_VALUES } from "../../constant/project";
 import Modal from "../../components/Modal";
 import ModaInputPhoto from "./ModaInputPhoto";
+import { Helmet } from "react-helmet";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
@@ -127,6 +128,9 @@ const AddRecipe = () => {
 
   return (
     <FormRecipeContainer>
+      <Helmet>
+        <title>Cantina - Ajouter une recette</title>
+      </Helmet>
       <h2>Nouvelle recette</h2>
       <form onSubmit={formik.handleSubmit}>
         <HeaderFormRecipes>

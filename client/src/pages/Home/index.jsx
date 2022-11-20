@@ -22,6 +22,7 @@ import {
 } from "./Home.styled";
 import SearchBar from "./SearchBar";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,9 @@ const Home = () => {
 
   return (
     <HomeWrapper>
+      <Helmet>
+        <title>Cantina - Accueil</title>
+      </Helmet>
       <Carousel />
       <ActionRow className="section-separator">
         <div className="col start">
