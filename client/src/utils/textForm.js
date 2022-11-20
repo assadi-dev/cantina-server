@@ -24,7 +24,8 @@ export const pluriel = (nb, singulier, pluriels) => {
  */
 export const extractUnite = (string) => {
   //Default /\d+/g
-  let r = new RegExp("\\d+", "g");
+  let r = new RegExp("\\u00BD|\\d+", "g");
+  console.log(r.test(string));
   return string.replace(r, "");
 };
 
@@ -36,5 +37,9 @@ export const extractUnite = (string) => {
 export const extractQte = (string) => {
   // Default /([a-zA-Z])\w+/g
   let r = new RegExp("([a-zA-Z])", "g");
-  return string.replace(r, "");
+  if (r.test(string)) {
+    return string.replace(r, "");
+  }
+
+  return string;
 };

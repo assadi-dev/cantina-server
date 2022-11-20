@@ -31,7 +31,6 @@ const IngredientInput = ({ ingredient, onChange, onRemoveitem }) => {
           <FloatingLabel
             name="qte"
             label="Qté"
-            type="number"
             min="1"
             value={inputvalue.qte}
             onChange={handleChange}

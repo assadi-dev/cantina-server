@@ -9,6 +9,13 @@ export const FormRecipeContainer = styled.div`
   @media (min-width: 768px) {
     width: 80%;
   }
+  .text-indication {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .error-message {
+    margin: 0.6rem 0;
+    color: var(--danger-color);
+  }
 `;
 
 export const FormInputControl = styled.div`
@@ -128,4 +135,39 @@ export const AddPhotoBtn = styled.button`
   background-color: var(--primary-color);
   border-radius: 5px;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.25);
+`;
+
+export const ModalInputPhotoContainer = styled.div`
+  width: 80%;
+  min-height: 100px;
+  padding: 12px 18px;
+  @media screen and (min-width: 768px) {
+    width: 550px;
+    background-color: var(--white);
+    border-radius: 5px;
+  }
+`;
+
+export const ModalHeaderphoto = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  .close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+`;
+
+export const ModalInputPhoto = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
 `;

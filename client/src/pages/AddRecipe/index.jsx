@@ -25,8 +25,9 @@ import { IMG_BLANK } from "../../constant/theme";
 import { addRecipes, LoadData } from "../../redux/actions/RecipeAction.action";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { LOAD_DATA } from "../../redux/types/Recipes.type";
 import { NIVEAU_OPTIONS_VALUES } from "../../constant/project";
+import Modal from "../../components/Modal";
+import ModaInputPhoto from "./ModaInputPhoto";
 
 const AddRecipe = () => {
   const [listIngredient, setListingredient] = useState([]);
@@ -39,6 +40,13 @@ const AddRecipe = () => {
       { id: uniqid(), qte: 1, unite: "", label: "" },
     ]);
   };
+
+  const [modalPhoto, setModalPhoto] = useState({
+    isOpen: true,
+    value: "",
+    label: "Ajouter une photo",
+  });
+
   const addEtapes = () => {
     setListEtape((prevState) => [...prevState, { id: uniqid(), content: "" }]);
   };
@@ -68,6 +76,11 @@ const AddRecipe = () => {
       return ingredient;
     });
     setListingredient(() => upDateIngredient);
+  };
+
+  //Modal Ajout Photo + veriff
+  const handleModalPhoto = () => {
+    setModalPhoto(() => !modalPhoto.isOpen);
   };
 
   //Envoie des donnée complete
@@ -157,7 +170,9 @@ const AddRecipe = () => {
             <div>
               <HeaderFormPreview img={formik.values.photo}></HeaderFormPreview>
               <RowBtnContainer>
-                <AddPhotoBtn>Ajouter une photo</AddPhotoBtn>
+                <AddPhotoBtn onClick={handleModalPhoto}>
+                  {modalPhoto.label}
+                </AddPhotoBtn>
               </RowBtnContainer>
             </div>
           </div>
@@ -203,6 +218,10 @@ const AddRecipe = () => {
           <SubmitBtn type="submit">Ajouter</SubmitBtn>
         </FormBottom>
       </form>
+
+      <Modal isOpen={true}>
+        <ModaInputPhoto />
+      </Modal>
     </FormRecipeContainer>
   );
 };
