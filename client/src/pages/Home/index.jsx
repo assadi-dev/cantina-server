@@ -46,7 +46,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllRecipes());
-  }, []);
+  }, [recepesCollection.ready]);
 
   return (
     <HomeWrapper>

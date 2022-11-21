@@ -45,12 +45,11 @@ const RecipesReducer = (state = initialState, action) => {
       return { ...state, all: payload, isReady: true };
     case SEARCH_RECIPE:
       let searchResult = [];
-
       searchResult = payload.term
-        ? state.all.filter((recipe) =>
+        ? payload.all.filter((recipe) =>
             recipe.titre.toLowerCase().includes(payload.term.toLowerCase())
           )
-        : state.all;
+        : payload.all;
 
       return { ...state, all: searchResult, isReady: true };
 

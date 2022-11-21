@@ -170,8 +170,17 @@ export const filtered_recipes = ({ niveau, personnes, tempsPreparation }) => {
 
 export const searchRecipes = (term) => {
   return async (dispatch) => {
-    term.length > 0
-      ? dispatch({ type: SEARCH_RECIPE, payload: { term } })
-      : dispatch(getAllRecipes());
+    new Promise((resolve, reject) => {
+      try {
+        Api.get("recipes").then((res) => {
+          let all = res.data;
+          dispatch({
+            type: SEARCH_RECIPE,
+            payload: { term, all },
+          });
+        });
+        resoleve(all);
+      } catch (error) {}
+    });
   };
 };
