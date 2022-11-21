@@ -13,7 +13,6 @@ const Navbar = () => {
   }, []);
 
   const handleScroll = () => {
-    console.log(window.scrollY);
     if (window.scrollY > 80) {
       setShow(true);
     } else {
